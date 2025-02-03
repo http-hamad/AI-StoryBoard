@@ -3,6 +3,10 @@
 ## Overview
 StoryBoard AI is an **efficient and powerful Streamlit-based application** that leverages the latest AI models to convert images into stories, generate storyboards, and create AI-generated images from text. This project utilizes state-of-the-art models like **DeepSeek**, **Gemini**, and **Flux AI**, ensuring high-quality outputs while maintaining **optimized performance** through caching, parallel processing, and lightweight image handling.
 
+
+https://github.com/user-attachments/assets/043359dc-c897-45f1-9c3b-aab44fc5a9ad
+
+
 ---
 
 ## Features
