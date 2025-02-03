@@ -119,11 +119,13 @@ streamlit run app.py
 ## Project Architecture
 ```
 📂 AI-Story-Generator/
-├── 📄 app.py             # Streamlit UI & Core Logic
-├── 📄 requirements.txt   # Dependencies
-├── 📂 models/            # AI Model Handlers
-├── 📂 utils/             # Helper Functions (Processing, API Calls, etc.)
-└── 📄 README.md         # Documentation
+├── 📄 app.py                     # Streamlit UI & Core Logic
+├── 📄 requirements.txt           # Dependencies
+├── 🗒️ img-to-story.ipynb         # Image to story notebook
+├── 🗒️ storyboard.ipynb           # storyboard notebook
+├── 🗒️ story-to-img.ipynb         # Story to Image notebook
+├── 📄 .env                       # To setup (APIs, passwords, etc)
+└── 📄 README.md                  # Documentation
 ```
 
 ![StoryBoard AI](https://github.com/user-attachments/assets/edecb82d-39f4-44bc-8e5f-64b8a34a02da)
