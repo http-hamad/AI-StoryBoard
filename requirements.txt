@@ -1,0 +1,10 @@
+torch
+streamlit
+requests
+Pillow
+dotenv
+groq
+fal-client
+google-generativeai
+transformers
+reportlab
