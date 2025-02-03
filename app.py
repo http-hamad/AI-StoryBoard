@@ -40,6 +40,24 @@ def load_blip_components():
 # Initialize processor and model together
 blip_processor, blip_model = load_blip_components()
 
+def validate_api_keys(required_services):
+    errors = []
+    key_checks = {
+        "Gemini": not st.session_state.gemini_key.startswith("Enter your"),
+        "DeepSeek": not st.session_state.deepseek_key.startswith("Enter your"),
+        "Flux": not st.session_state.flux_key.startswith("Enter your")
+    }
+    
+    for service in required_services:
+        if not key_checks.get(service, False):
+            errors.append(f"Please enter your {service} API key in the 🔑 API Key Management section")
+    
+    if errors:
+        for error in errors:
+            st.error(error)
+        return False
+    return True
+
 # Optimized caption generation
 def generate_caption(image):
     # Use the cached processor and model
@@ -155,9 +173,9 @@ if st.session_state.get('show_api_keys', False):
             st.success("API keys saved for this session!")
 
 # API Keys (use custom keys if available, otherwise .env)
-gemini_api_key = st.session_state.get('gemini_key', "AIzaSyAi0ZDqVbckd0A7U94KECsDFGCY-SNtDCg")
-deepseek_api_key = st.session_state.get('deepseek_key', "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")
-os.environ["FAL_KEY"] = st.session_state.get('flux_key', "79701cb2-38fe-4cd5-a94c-faab1045d94e:efd9397b1f82ee33079bd9ddc15ab2e4")
+gemini_api_key = st.session_state.get('gemini_key', "Enter your Gemini API key here")
+deepseek_api_key = st.session_state.get('deepseek_key', "Enter your DeepSeek API key here")
+os.environ["FAL_KEY"] = st.session_state.get('flux_key', "Enter your Flux API key here")
 
 # Dropdown Menu for Functionality Selection
 options = ["Image to Story", "Storyboard", "Story to Image"]
@@ -182,6 +200,9 @@ if selected_option == "Image to Story":
     model_choice = st.selectbox("Select AI model", ["DeepSeek", "Gemini"], index=0)
 
     if st.button("Generate Story") and "caption" in st.session_state:
+        required_services = ["Gemini"] if model_choice == "Gemini" else ["DeepSeek"]
+        if not validate_api_keys(required_services):
+            st.stop()
         caption = st.session_state["caption"]
         with st.spinner("Generating story... Please wait."):
             if model_choice == "Gemini":
@@ -218,6 +239,9 @@ elif selected_option == "Storyboard":
     model_choice = st.selectbox("Select AI model", ["DeepSeek", "Gemini"], index=0, key="storyboard_model")
 
     if st.button("Generate Story") and "storyboard_captions" in st.session_state:
+        required_services = ["Gemini"] if model_choice == "Gemini" else ["DeepSeek"]
+        if not validate_api_keys(required_services):
+            st.stop()
         captions = st.session_state["storyboard_captions"].split("\n")
         combined_caption = " ".join(captions)
 
@@ -247,6 +271,8 @@ elif selected_option == "Story to Image":
     num_images = st.slider("Select number of images", 1, 10, 3)
     
     if st.button("Generate Images") and story:
+        if not validate_api_keys(["Gemini", "Flux"]):
+            st.stop()
         st.session_state.generated_images = []
         st.session_state.image_prompts = []
         
