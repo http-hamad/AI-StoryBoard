@@ -358,3 +358,9 @@ elif selected_option == "Story to Image":
                 mime="application/pdf",
                 help="Download PDF with images and their prompts"
             )
+
+# credits
+st.markdown(
+    "<div style='text-align: center; margin-top: 50px; color: #A0A0A0; font-size: 12px;'>Developed by Mubashir Hamad | Contact: <a style='color: #A0A0A0;' href='mailto:contact.mubashirhamad@gmail.com'>contact.mubashirhamad@gmail.com</a> | GitHub: <a style='color: #A0A0A0;' href='https://github.com/http-hamad'>http-hamad</a> | LinkedIn: <a style='color: #A0A0A0;' href='https://www.linkedin.com/in/hamad2k23/'>hamad2k23</a></div>", 
+    unsafe_allow_html=True
+)
