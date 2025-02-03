@@ -5,7 +5,6 @@ import zipfile
 import requests
 import fal_client
 import streamlit as st
-from dotenv import load_dotenv
 from PIL import Image
 from io import BytesIO
 import google.generativeai as genai
@@ -15,9 +14,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 from concurrent.futures import ThreadPoolExecutor
 from transformers import BlipProcessor, BlipForConditionalGeneration
+# from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
 # Cache BLIP model with optimized settings
 @st.cache_resource
@@ -155,9 +155,9 @@ if st.session_state.get('show_api_keys', False):
             st.success("API keys saved for this session!")
 
 # API Keys (use custom keys if available, otherwise .env)
-gemini_api_key = st.session_state.get('gemini_key', os.getenv("GEMINI_API_KEY"))
-deepseek_api_key = st.session_state.get('deepseek_key', os.getenv("DEEPSEEK_API_KEY"))
-os.environ["FAL_KEY"] = st.session_state.get('flux_key', os.getenv("FAL_KEY"))
+gemini_api_key = st.session_state.get('gemini_key', "AIzaSyAi0ZDqVbckd0A7U94KECsDFGCY-SNtDCg")
+deepseek_api_key = st.session_state.get('deepseek_key', "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")
+os.environ["FAL_KEY"] = st.session_state.get('flux_key', "79701cb2-38fe-4cd5-a94c-faab1045d94e:efd9397b1f82ee33079bd9ddc15ab2e4")
 
 # Dropdown Menu for Functionality Selection
 options = ["Image to Story", "Storyboard", "Story to Image"]
